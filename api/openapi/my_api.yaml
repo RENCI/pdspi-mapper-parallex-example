@@ -23,12 +23,12 @@ paths:
                 $ref: '#/components/schemas/Config'
               example:
                 {
-                    "title": "DOAC variable mapper",
-                    "piid": "pdspi-mapper-DOAC",
+                    "title": "Parallelized patient variable mapper",
+                    "piid": "pdspi-mapper-parallex-example",
                     "pluginType": "m",
                     "settingsDefaults": {
                       "pluginSelectors": [ {
-                          "title": "FHIR URI - an URL (locator) or an URN (unique name)",
+                          "title": "Mapper URI - an URL (locator) or an URN (unique name)",
                           "selectorValue": {
                               "value": "http://hapi.fhir.org/baseR4",
                               "title": "Happy FHIR base url" }
@@ -36,10 +36,16 @@ paths:
                       ],
                       "modelParameters": [ 
                         {
-                          "id": "current-time",
-                          "parameterDescription": "Compute variables relevant to this timestamp.",
-                          "parameterValue": { "value": "2019-09-20T00:00:01Z" },
-                          "legalValues": { "type": "string", "format": "time-stamp" }
+                          "id": "specName",
+                          "parameterDescription": "Name of the file to use for this mapping. Must be in the config directory from which the mapper was started, which is mounted to the mapper container.",
+                          "parameterValue": { "value": "spec.py" },
+                          "legalValues": { "type": "string" }
+                        },
+                        {
+                          "id": "libraryPath",
+                          "parameterDescription": "The name of the directory where the python function are, under the config directory, which is mounted by the mapper container. For example, if you have custom functions in a file called 'clinical-feature2.py', you would put that file into this directory.",
+                          "parameterValue": { "value": "spec" },
+                          "legalValues": { "type": "string" }
                         }
                       ],
                       "patientVariables": [
