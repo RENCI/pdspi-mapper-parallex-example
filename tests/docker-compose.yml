@@ -9,7 +9,6 @@ services:
     environment:
       INPUT_DIR: /shared
       OUTPUT_DIR: /shared
-      DEBUG: INFO
     volumes:
       - $SHARED_DIR:/shared
     depends_on:
